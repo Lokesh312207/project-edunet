@@ -8,7 +8,6 @@ html,
     background: #f5f7fa;
 }
 
-/* Layout */
 .app {
     display: flex;
     height: 100vh;
@@ -32,12 +31,8 @@ html,
     flex-direction: column;
     align-items: flex-start;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.sidebar h1 {
-    font-size: 1.6em;
-    font-weight: bold;
-    margin-bottom: 25px;
+    position: relative;
+    transition: transform 0.3s ease;
 }
 
 .sidebar ul {
@@ -64,12 +59,11 @@ html,
     background: rgba(255, 255, 255, 0.2);
 }
 
-/* Main Content */
+/* Main */
 .main {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 0;
     overflow-y: auto;
     background: transparent;
 }
@@ -79,13 +73,13 @@ html,
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    padding: 15px 20px;
     background: #ffffff;
     border-bottom: 1px solid #e0e0e0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 20;
 }
 
 .app.dark .top-nav {
@@ -93,23 +87,15 @@ html,
     border-bottom: 1px solid #333;
 }
 
-.top-nav h2 {
-    margin: 0;
-    font-size: 1.4em;
-    font-weight: 600;
+.menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
 }
 
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.nav-actions span {
-    font-weight: 500;
-}
-
-/* Content Area */
+/* Content */
 .content {
     padding: 30px;
     flex: 1;
@@ -202,34 +188,32 @@ html,
 
 /* Profile */
 .profile-pic {
-    width: 90px;
-    height: 90px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    margin-bottom: 12px;
-    border: 3px solid #007bff;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #4a90e2;
+    display: block;
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .app {
-        flex-direction: column;
-    }
-
+@media (max-width: 900px) {
     .sidebar {
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-around;
-        padding: 15px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        transform: translateX(-100%);
+        z-index: 100;
     }
 
-    .sidebar ul {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
+    .sidebar.open {
+        transform: translateX(0);
     }
 
-    .sidebar li {
-        margin: 0;
+    .menu-btn {
+        display: block;
     }
 
     .main {
@@ -242,10 +226,5 @@ html,
 
     .stats {
         flex-direction: column;
-        gap: 15px;
-    }
-
-    .top-nav {
-        padding: 10px 15px;
     }
 }

@@ -4,12 +4,14 @@ import "./App.css";
 
 function App() {
     const [darkMode, setDarkMode] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
     const [ratings, setRatings] = useState({});
 
     const toggleTheme = () => setDarkMode(!darkMode);
+    const toggleMenu = () => setMenuOpen(!menuOpen);
 
     // Dummy Data
-    const user = { name: "Lokesh Kumar", email: "lokesh@example.com" };
+    const user = { name: "Lokesh Kumar", email: "lokeshsomapalli@gmail.com" };
     const stats = { enrolled: 5, completed: 2, pending: 3 };
     const courses = [
         { id: 1, title: "React Basics", subject: "Web Development", progress: 60, status: "Active" },
@@ -35,7 +37,7 @@ function App() {
     ];
 
     const handleRating = (courseId, rating) => {
-        setRatings(Object.assign({}, ratings, { [courseId]: rating }));
+        setRatings({ ...ratings, [courseId]: rating });
     };
 
     const DashboardHome = () =>
@@ -147,7 +149,11 @@ function App() {
         React.createElement("div", { className: "content" },
             React.createElement("h2", null, "Profile"),
             React.createElement("div", { className: "card" },
-                React.createElement("img", { src: "/assets/profile-placeholder.jpg", alt: "Profile", className: "profile-pic" }),
+                React.createElement("img", {
+                    src: process.env.PUBLIC_URL + "/assets/profile-placeholder.jpg",
+                    alt: "Profile",
+                    className: "profile-pic"
+                }),
                 React.createElement("p", null, "Name: " + user.name),
                 React.createElement("p", null, "Email: " + user.email),
                 React.createElement("button", { className: "btn" }, "Edit Profile")
@@ -157,26 +163,45 @@ function App() {
     const Settings = () =>
         React.createElement("div", { className: "content" },
             React.createElement("h2", null, "Settings"),
-            React.createElement("button", { className: "btn", onClick: toggleTheme }, "Toggle " + (darkMode ? "Light" : "Dark") + " Mode")
+            React.createElement("div", { className: "card" },
+                React.createElement("h3", null, "Notification Preferences"),
+                React.createElement("label", null,
+                    React.createElement("input", { type: "checkbox", defaultChecked: true }), " Email Notifications"
+                ),
+                React.createElement("br"),
+                React.createElement("label", null,
+                    React.createElement("input", { type: "checkbox" }), " SMS Notifications"
+                ),
+                React.createElement("br"),
+                React.createElement("label", null,
+                    React.createElement("input", { type: "checkbox", defaultChecked: true }), " Push Notifications"
+                )
+            ),
+            React.createElement("div", { className: "card" },
+                React.createElement("h3", null, "Theme"),
+                React.createElement("button", { className: "btn", onClick: toggleTheme },
+                    darkMode ? "Switch to Light Mode" : "Switch to Dark Mode")
+            )
         );
 
     return React.createElement(Router, null,
         React.createElement("div", { className: darkMode ? "app dark" : "app" },
-            React.createElement("nav", { className: "sidebar" },
+            React.createElement("nav", { className: menuOpen ? "sidebar open" : "sidebar" },
                 React.createElement("h1", null, "EduPanel"),
                 React.createElement("ul", null,
-                    React.createElement("li", null, React.createElement(Link, { to: "/" }, "Dashboard")),
-                    React.createElement("li", null, React.createElement(Link, { to: "/courses" }, "My Courses")),
-                    React.createElement("li", null, React.createElement(Link, { to: "/certificates" }, "Certificates")),
-                    React.createElement("li", null, React.createElement(Link, { to: "/assignments" }, "Assignments")),
-                    React.createElement("li", null, React.createElement(Link, { to: "/announcements" }, "Announcements")),
-                    React.createElement("li", null, React.createElement(Link, { to: "/leaderboard" }, "Leaderboard")),
-                    React.createElement("li", null, React.createElement(Link, { to: "/profile" }, "Profile")),
-                    React.createElement("li", null, React.createElement(Link, { to: "/settings" }, "Settings"))
+                    React.createElement("li", null, React.createElement(Link, { to: "/", onClick: toggleMenu }, "Dashboard")),
+                    React.createElement("li", null, React.createElement(Link, { to: "/courses", onClick: toggleMenu }, "My Courses")),
+                    React.createElement("li", null, React.createElement(Link, { to: "/certificates", onClick: toggleMenu }, "Certificates")),
+                    React.createElement("li", null, React.createElement(Link, { to: "/assignments", onClick: toggleMenu }, "Assignments")),
+                    React.createElement("li", null, React.createElement(Link, { to: "/announcements", onClick: toggleMenu }, "Announcements")),
+                    React.createElement("li", null, React.createElement(Link, { to: "/leaderboard", onClick: toggleMenu }, "Leaderboard")),
+                    React.createElement("li", null, React.createElement(Link, { to: "/profile", onClick: toggleMenu }, "Profile")),
+                    React.createElement("li", null, React.createElement(Link, { to: "/settings", onClick: toggleMenu }, "Settings"))
                 )
             ),
             React.createElement("main", { className: "main" },
                 React.createElement("div", { className: "top-nav" },
+                    React.createElement("button", { className: "menu-btn", onClick: toggleMenu }, "☰"),
                     React.createElement("h2", null, "EduPanel Dashboard"),
                     React.createElement("div", { className: "nav-actions" },
                         React.createElement("span", null, user.name),
