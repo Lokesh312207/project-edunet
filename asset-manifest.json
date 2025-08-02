@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/project-edunet/static/css/main.886330c2.css",
-    "main.js": "/project-edunet/static/js/main.68d9e092.js",
+    "main.css": "/project-edunet/static/css/main.fe90ca04.css",
+    "main.js": "/project-edunet/static/js/main.a3c1a45e.js",
     "index.html": "/project-edunet/index.html",
-    "main.886330c2.css.map": "/project-edunet/static/css/main.886330c2.css.map",
-    "main.68d9e092.js.map": "/project-edunet/static/js/main.68d9e092.js.map"
+    "main.fe90ca04.css.map": "/project-edunet/static/css/main.fe90ca04.css.map",
+    "main.a3c1a45e.js.map": "/project-edunet/static/js/main.a3c1a45e.js.map"
   },
   "entrypoints": [
-    "static/css/main.886330c2.css",
-    "static/js/main.68d9e092.js"
+    "static/css/main.fe90ca04.css",
+    "static/js/main.a3c1a45e.js"
   ]
 }
