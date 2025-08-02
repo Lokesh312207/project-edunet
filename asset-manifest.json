@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/project-edunet/static/css/main.886330c2.css",
+    "main.js": "/project-edunet/static/js/main.68d9e092.js",
+    "index.html": "/project-edunet/index.html",
+    "main.886330c2.css.map": "/project-edunet/static/css/main.886330c2.css.map",
+    "main.68d9e092.js.map": "/project-edunet/static/js/main.68d9e092.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.886330c2.css",
+    "static/js/main.68d9e092.js"
+  ]
+}
